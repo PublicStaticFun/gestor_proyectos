@@ -1,0 +1,70 @@
+
+{% extends "base.html" %}
+
+{% block title %}Inicio | TaskManager{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <h1 class="h3 mb-1">Panel de control</h1>
+        <p class="text-secondary mb-0">
+            Organiza tus proyectos y mantén tus tareas al día.
+        </p>
+    </div>
+
+    <a href="{% url 'projects:list' %}" class="btn btn-primary">
+        Ver proyectos
+    </a>
+</div>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-4">
+        <div class="card dashboard-card">
+            <div class="card-body">
+                <h2 class="card-title">Proyectos</h2>
+                <p class="dashboard-number mb-0">Organiza</p>
+                <p class="text-secondary mb-0">
+                    Divide tu trabajo en proyectos.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card dashboard-card">
+            <div class="card-body">
+                <h2 class="card-title">Tareas</h2>
+                <p class="dashboard-number mb-0">Planifica</p>
+                <p class="text-secondary mb-0">
+                    Controla fechas y prioridades.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card dashboard-card">
+            <div class="card-body">
+                <h2 class="card-title">Seguimiento</h2>
+                <p class="dashboard-number mb-0">Avanza</p>
+                <p class="text-secondary mb-0">
+                    Consulta el progreso de tu trabajo.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card border-0 shadow-sm">
+    <div class="card-body">
+        <h2 class="h5">Comienza a trabajar</h2>
+        <p class="text-secondary">
+            En los siguientes pasos conectaremos esta interfaz
+            con la base de datos para mostrar tus proyectos y tareas.
+        </p>
+        <a href="{% url 'tasks:list' %}" class="btn btn-outline-primary">
+            Consultar tareas
+        </a>
+    </div>
+</div>
+{% endblock %}

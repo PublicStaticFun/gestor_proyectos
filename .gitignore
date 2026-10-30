@@ -1,0 +1,24 @@
+# Entornos virtuales
+venv/
+.venv/
+env/
+
+# Archivos de Python
+__pycache__/
+*.py[cod]
+
+# Variables de entorno y credenciales
+.env
+.env.*
+
+# Base de datos SQLite
+db.sqlite3
+
+# Archivos estáticos recopilados
+staticfiles/
+
+# Archivos subidos por usuarios
+media/
+
+# Configuración del editor
+.vscode/

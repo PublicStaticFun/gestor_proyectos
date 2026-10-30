@@ -1,0 +1,40 @@
+
+{% extends "base.html" %}
+
+{% block title %}Detalle de tarea | TaskManager{% endblock %}
+
+{% block content %}
+<a href="{% url 'tasks:list' %}"
+   class="btn btn-link px-0 mb-3">
+    ← Volver a tareas
+</a>
+
+<div class="card border-0 shadow-sm">
+    <div class="card-body p-4">
+        <h1 class="h3">{{ task.title }}</h1>
+
+        <p class="text-secondary">
+            {{ task.description|default:"Sin descripción." }}
+        </p>
+
+        <hr>
+
+        <p>
+            <strong>Proyecto:</strong> {{ task.project.name }}
+        </p>
+
+        <p>
+            <strong>Prioridad:</strong> {{ task.get_priority_display }}
+        </p>
+
+        <p>
+            <strong>Estado:</strong> {{ task.get_status_display }}
+        </p>
+
+        <p>
+            <strong>Fecha límite:</strong>
+            {{ task.due_date|date:"d/m/Y"|default:"Sin fecha" }}
+        </p>
+    </div>
+</div>
+{% endblock %}

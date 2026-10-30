@@ -1,0 +1,31 @@
+
+{% extends "base.html" %}
+
+{% block title %}Mi cuenta | TaskManager{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <h1 class="h3 mb-1">Mi cuenta</h1>
+        <p class="text-secondary mb-0">
+            Información de tu sesión actual.
+        </p>
+    </div>
+</div>
+
+<div class="card border-0 shadow-sm">
+    <div class="card-body p-4">
+        {% if user.is_authenticated %}
+            <h2 class="h5">Bienvenido, {{ user.username }}</h2>
+            <p class="text-secondary">
+                Has iniciado sesión correctamente.
+            </p>
+        {% else %}
+            <h2 class="h5">Bienvenido al gestor</h2>
+            <p class="text-secondary">
+                Actualmente estás navegando como visitante.
+            </p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

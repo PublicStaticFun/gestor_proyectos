@@ -1,0 +1,33 @@
+
+{% extends "base.html" %}
+
+{% block title %}Detalle del proyecto | TaskManager{% endblock %}
+
+{% block content %}
+<a href="{% url 'projects:list' %}"
+   class="btn btn-link px-0 mb-3">
+    ← Volver a proyectos
+</a>
+
+<div class="card border-0 shadow-sm">
+    <div class="card-body p-4">
+        <h1 class="h3">{{ project.name }}</h1>
+
+        <p class="text-secondary">
+            {{ project.description|default:"Sin descripción." }}
+        </p>
+
+        <hr>
+
+        <p>
+            <strong>Estado:</strong>
+            {{ project.get_status_display }}
+        </p>
+
+        <p>
+            <strong>Fecha de creación:</strong>
+            {{ project.created_at|date:"d/m/Y" }}
+        </p>
+    </div>
+</div>
+{% endblock %}

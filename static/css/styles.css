@@ -1,0 +1,50 @@
+body {
+    background-color: #f5f7fb;
+    color: #212529;
+    min-height: 100vh;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+main.container {
+    min-height: 70vh;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.dashboard-card {
+    border: 0;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgb(0 0 0 / 5%);
+    height: 100%;
+}
+
+.dashboard-card .card-title {
+    color: #6c757d;
+    font-size: 0.95rem;
+}
+
+.dashboard-number {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.table thead th {
+    color: #6c757d;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+footer {
+    background-color: #fff;
+}
