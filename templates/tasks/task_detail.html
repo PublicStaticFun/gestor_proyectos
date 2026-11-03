@@ -1,40 +1,54 @@
 
 {% extends "base.html" %}
 
-{% block title %}Detalle de tarea | TaskManager{% endblock %}
+{% block title %}{{ task.title }}{% endblock %}
 
 {% block content %}
-<a href="{% url 'tasks:list' %}"
-   class="btn btn-link px-0 mb-3">
-    ← Volver a tareas
-</a>
+<div class="container py-4">
+    <h1 class="h3 mb-3">{{ task.title }}</h1>
 
-<div class="card border-0 shadow-sm">
-    <div class="card-body p-4">
-        <h1 class="h3">{{ task.title }}</h1>
+    <p>{{ task.description|default:"Sin descripción." }}</p>
 
-        <p class="text-secondary">
-            {{ task.description|default:"Sin descripción." }}
-        </p>
+    <p>
+        <strong>Proyecto:</strong>
+        <a href="{% url 'projects:project_detail' task.project.pk %}">
+            {{ task.project.name }}
+        </a>
+    </p>
 
-        <hr>
+    <p>
+        <strong>Estado:</strong>
+        {{ task.get_status_display }}
+    </p>
 
-        <p>
-            <strong>Proyecto:</strong> {{ task.project.name }}
-        </p>
+    <p>
+        <strong>Prioridad:</strong>
+        {{ task.get_priority_display }}
+    </p>
 
-        <p>
-            <strong>Prioridad:</strong> {{ task.get_priority_display }}
-        </p>
+    <p>
+        <strong>Fecha límite:</strong>
+        {{ task.due_date|default:"Sin fecha límite" }}
+    </p>
 
-        <p>
-            <strong>Estado:</strong> {{ task.get_status_display }}
-        </p>
+    <p>
+        <strong>Asignada a:</strong>
+        {{ task.assigned_to|default:"Sin asignar" }}
+    </p>
 
-        <p>
-            <strong>Fecha límite:</strong>
-            {{ task.due_date|date:"d/m/Y"|default:"Sin fecha" }}
-        </p>
-    </div>
+    <a href="{% url 'tasks:task_update' task.pk %}"
+       class="btn btn-primary">
+        Editar tarea
+    </a>
+
+    <a href="{% url 'tasks:task_delete' task.pk %}"
+       class="btn btn-outline-danger">
+        Eliminar tarea
+    </a>
+
+    <a href="{% url 'tasks:task_list' %}"
+       class="btn btn-link">
+        Volver a las tareas
+    </a>
 </div>
 {% endblock %}

@@ -1,0 +1,36 @@
+
+{% extends "base.html" %}
+
+{% block title %}Eliminar proyecto{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="card border-danger">
+        <div class="card-body">
+            <h1 class="h4">Eliminar proyecto</h1>
+
+            <p>
+                ¿Seguro que deseas eliminar el proyecto
+                <strong>{{ project.name }}</strong>?
+            </p>
+
+            <p class="text-danger">
+                Esta acción también eliminará las tareas asociadas.
+            </p>
+
+            <form method="post">
+                {% csrf_token %}
+
+                <button type="submit" class="btn btn-danger">
+                    Sí, eliminar
+                </button>
+
+                <a href="{% url 'projects:project_detail' project.pk %}"
+                   class="btn btn-outline-secondary">
+                    Cancelar
+                </a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

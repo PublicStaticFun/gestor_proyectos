@@ -5,12 +5,17 @@ from . import views
 app_name = "projects"
 
 urlpatterns = [
-    path("", views.project_list, name="list"),
+    path("", views.project_list, name="project_list"),
+    path("crear/", views.project_create, name="project_create"),
+    path("<int:project_id>/", views.project_detail, name="project_detail"),
     path(
-        # "<int:project_id>/" significa que Django acepta un número entero en esa parte de la ruta
-        # y lo pasa a la vista como argumento.
-        "<int:project_id>/",
-        views.project_detail,
-        name="detail",
+        "<int:project_id>/editar/",
+        views.project_update,
+        name="project_update",
+    ),
+    path(
+        "<int:project_id>/eliminar/",
+        views.project_delete,
+        name="project_delete"
     ),
 ]

@@ -1,33 +1,66 @@
 
 {% extends "base.html" %}
 
-{% block title %}Detalle del proyecto | TaskManager{% endblock %}
+{% block title %}{{ project.name }}{% endblock %}
 
 {% block content %}
-<a href="{% url 'projects:list' %}"
-   class="btn btn-link px-0 mb-3">
-    ← Volver a proyectos
-</a>
-
-<div class="card border-0 shadow-sm">
-    <div class="card-body p-4">
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-start mb-3">
         <h1 class="h3">{{ project.name }}</h1>
 
-        <p class="text-secondary">
-            {{ project.description|default:"Sin descripción." }}
-        </p>
+        <div>
+            <a href="{% url 'projects:project_update' project_id=project.pk %}"
+               class="btn btn-outline-primary">
+                Editar
+            </a>
 
-        <hr>
-
-        <p>
-            <strong>Estado:</strong>
-            {{ project.get_status_display }}
-        </p>
-
-        <p>
-            <strong>Fecha de creación:</strong>
-            {{ project.created_at|date:"d/m/Y" }}
-        </p>
+            <a href="{% url 'projects:project_delete' project_id=project.pk %}"
+               class="btn btn-outline-danger">
+               {% csrf_token %}
+                Eliminar
+            </a>
+        </div>
     </div>
+
+    <p>{{ project.description|default:"Sin descripción." }}</p>
+
+    <p>
+        <strong>Estado:</strong>
+        {{ project.get_status_display }}
+    </p>
+
+    <hr>
+
+    <div class="d-flex justify-content-between align-items-center">
+        <h2 class="h5">Tareas del proyecto</h2>
+
+        <a href="{% url 'tasks:task_create' %}?project={{ project.pk }}"
+           class="btn btn-primary btn-sm">
+            + Crear tarea
+        </a>
+    </div>
+
+    {% for task in project.tasks.all %}
+        <div class="border rounded p-3 mt-3">
+            <h3 class="h6">{{ task.title }}</h3>
+            <p class="mb-2">
+                {{ task.get_status_display }} ·
+                Prioridad: {{ task.get_priority_display }}
+            </p>
+
+            <a href="{% url 'tasks:task_detail' task.pk %}">
+                Ver tarea
+            </a>
+        </div>
+    {% empty %}
+        <p class="text-muted mt-3">
+            Este proyecto todavía no tiene tareas.
+        </p>
+    {% endfor %}
+
+    <a href="{% url 'projects:project_list' %}"
+       class="btn btn-link mt-3">
+        Volver a mis proyectos
+    </a>
 </div>
 {% endblock %}

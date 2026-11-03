@@ -1,0 +1,36 @@
+
+{% extends "base.html" %}
+
+{% block title %}Eliminar tarea{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="card border-danger">
+        <div class="card-body">
+            <h1 class="h4">Eliminar tarea</h1>
+
+            <p>
+                ¿Deseas eliminar la tarea
+                <strong>{{ task.title }}</strong>?
+            </p>
+
+            <p class="text-muted">
+                Proyecto: {{ task.project.name }}
+            </p>
+
+            <form method="post">
+                {% csrf_token %}
+
+                <button type="submit" class="btn btn-danger">
+                    Sí, eliminar tarea
+                </button>
+
+                <a href="{% url 'tasks:task_detail' task.pk %}"
+                   class="btn btn-outline-secondary">
+                    Cancelar
+                </a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
