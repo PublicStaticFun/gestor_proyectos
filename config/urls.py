@@ -16,3 +16,7 @@ urlpatterns = [
     path("tasks/", include("tasks.urls")),
     path("accounts/", include("accounts.urls")),
 ]
+
+admin.site.site_header = "Gestor de tareas y proyectos"
+admin.site.site_title = "Administración del gestor"
+admin.site.index_title = "Panel del administración"
